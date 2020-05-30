@@ -290,13 +290,6 @@ class GeodataAPICollection:
 
 			self.dlg.tableWidget.setHorizontalHeaderLabels(estabilishment_head)
 
-			chkBoxItem = QtWidgets.QTableWidgetItem()
-			chkBoxItem.setFlags(QtCore.Qt.ItemIsUserCheckable | QtCore.Qt.ItemIsEnabled)
-			chkBoxItem.setCheckState(QtCore.Qt.Unchecked)
-			self.dlg.tableWidget.setItem(count,0,chkBoxItem)
-
-			count = count + 1
-			count_b = count_b + 1
 
 			chkBoxItem = QtWidgets.QTableWidgetItem()
 			chkBoxItem.setFlags(QtCore.Qt.ItemIsUserCheckable | QtCore.Qt.ItemIsEnabled)
@@ -331,14 +324,15 @@ class GeodataAPICollection:
 				else:
 					self.dlg.tableWidget.setItem(count_b, 5, QtWidgets.QTableWidgetItem('XX-empty-XX'))
 
+			count = count + 1
+			count_b = count_b + 1
 
 
 
 	def download(self):
-		test = [1,2,3,4,5,6,7,8,9,10]
 		code = []
-		count = 1
-		for x in test:
+		count = 0
+		for x in range(300):
 			if self.dlg.tableWidget.item(count, 0).checkState() == QtCore.Qt.Checked:
 				code.append(self.dlg.tableWidget.item(count, 2).text())
 			count = count + 1
