@@ -358,8 +358,21 @@ class GeodataAPICollection:
 				estabilishment = []
 				if count == 0:
 					estabilishment_head.append('FHRSID')
+					estabilishment_head.append('LocalAuthorityBusinessID')
 					estabilishment_head.append('BusinessName')
 					estabilishment_head.append('BusinessType')
+					estabilishment_head.append('BusinessTypeID')
+					estabilishment_head.append('AddressLine1')
+					estabilishment_head.append('AddressLine2')
+					estabilishment_head.append('AddressLine3')
+					estabilishment_head.append('AddressLine4')
+					estabilishment_head.append('PostCode')
+					estabilishment_head.append('RatingValue')
+					estabilishment_head.append('RatingKey')
+					estabilishment_head.append('RatingDate')
+					estabilishment_head.append('Hygiene')
+					estabilishment_head.append('Structural')
+					estabilishment_head.append('ConfidenceInManagement')
 					estabilishment_head.append('Longitude')
 					estabilishment_head.append('Latitude')
 					w = csv.writer(test_data, delimiter='|')
@@ -371,6 +384,11 @@ class GeodataAPICollection:
 					estabilishment.append(FHRSID)
 				else:
 					estabilishment.append('')
+				if member.find('LocalAuthorityBusinessID') is not None:
+					LocalAuthorityBusinessID = member.find('LocalAuthorityBusinessID').text
+					estabilishment.append(LocalAuthorityBusinessID)
+				else:
+					estabilishment.append('')
 				if member.find('BusinessName') is not None:
 					BusinessName = member.find('BusinessName').text
 					estabilishment.append(BusinessName)
@@ -380,6 +398,71 @@ class GeodataAPICollection:
 					BusinessType = member.find('BusinessType').text
 					estabilishment.append(BusinessType)
 				else:
+					estabilishment.append('')
+				if member.find('BusinessTypeID') is not None:
+					BusinessTypeID = member.find('BusinessTypeID').text
+					estabilishment.append(BusinessTypeID)
+				else:
+					estabilishment.append('')
+				if member.find('AddressLine1') is not None:
+					AddressLine1 = member.find('AddressLine1').text
+					estabilishment.append(AddressLine1)
+				else:
+					estabilishment.append('')
+				if member.find('AddressLine2') is not None:
+					AddressLine2 = member.find('AddressLine2').text
+					estabilishment.append(AddressLine2)
+				else:
+					estabilishment.append('')
+				if member.find('AddressLine3') is not None:
+					AddressLine3 = member.find('AddressLine3').text
+					estabilishment.append(AddressLine3)
+				else:
+					estabilishment.append('')
+				if member.find('AddressLine4') is not None:
+					AddressLine4 = member.find('AddressLine4').text
+					estabilishment.append(AddressLine4)
+				else:
+					estabilishment.append('')
+				if member.find('PostCode') is not None:
+					PostCode = member.find('PostCode').text
+					estabilishment.append(PostCode)
+				else:
+					estabilishment.append('')
+				if member.find('RatingValue') is not None:
+					RatingValue = member.find('RatingValue').text
+					estabilishment.append(RatingValue)
+				else:
+					estabilishment.append('')
+				if member.find('RatingKey') is not None:
+					RatingKey = member.find('RatingKey').text
+					estabilishment.append(RatingKey)
+				else:
+					estabilishment.append('')
+				if member.find('RatingDate') is not None:
+					RatingDate = member.find('RatingDate').text
+					estabilishment.append(RatingDate)
+				else:
+					estabilishment.append('')
+				if member.find('Scores') is not None:
+					if member.find('Scores').find('Hygiene') is not None:
+						Hygiene = member.find('Scores').find('Hygiene').text
+						estabilishment.append(Hygiene)
+					else:
+						estabilishment.append('')
+					if member.find('Scores').find('Structural') is not None:
+						Structural = member.find('Scores').find('Structural').text
+						estabilishment.append(Structural)
+					else:
+						estabilishment.append('')
+					if member.find('Scores').find('ConfidenceInManagement') is not None:
+						ConfidenceInManagement = member.find('Scores').find('ConfidenceInManagement').text
+						estabilishment.append(ConfidenceInManagement)
+					else:
+						estabilishment.append('')
+				else:
+					estabilishment.append('')
+					estabilishment.append('')
 					estabilishment.append('')
 				if member.find('Geocode') is not None:
 					if member.find('Geocode').find('Longitude') is not None:
