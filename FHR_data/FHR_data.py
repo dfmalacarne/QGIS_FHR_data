@@ -330,23 +330,34 @@ class GeodataAPICollection:
 
 
 	def download(self):
+		position = []
 		code = []
+		name = []
+		pos = 0
 		count = 0
 		for x in range(300):
 			if self.dlg.tableWidget.item(count, 0).checkState() == QtCore.Qt.Checked:
 				code.append(self.dlg.tableWidget.item(count, 2).text())
+				name.append(self.dlg.tableWidget.item(count, 1).text())
+				position.append(pos)
+				pos = pos + 1
 			count = count + 1
 
+		for x in range(len(position)):
+			print(position[x])
+			print(code[x])
+			print(name[x])
+		print(code[1])
 
-		for cd in code:
+		for n in position:
 			now = datetime.datetime.now()
-			tree = ET.parse(urllib.request.urlopen("https://ratings.food.gov.uk/OpenDataFiles/FHRS%sen-GB.xml" % cd))
+			tree = ET.parse(urllib.request.urlopen("https://ratings.food.gov.uk/OpenDataFiles/FHRS%sen-GB.xml" % code[n]))
 			root = tree.getroot()
 
 			# open a file for writing
 			if not os.path.exists('C:/FHR_data'):
 				os.makedirs('C:/FHR_data')
-			path = 'C:/FHR_data/{}_{}{}{}.csv'.format(cd, now.year, now.month, now.day)
+			path = 'C:/FHR_data/{}_{}_{}_{}.csv'.format(name[n], now.year, now.month, now.day)
 			test_data = open(path, 'w')
 
 			# create the csv writer object
@@ -483,8 +494,8 @@ class GeodataAPICollection:
 			test_data.close()
 
 
-			uri = "file:///C:/FHR_data/{}_{}{}{}.csv?crs=EPSG:4326&delimiter={}&xField={}&yField={}".format(cd, now.year, now.month, now.day, "|", "Longitude", "Latitude")
-			layer_csv = QgsVectorLayer(uri, cd + "_" + str(now.year) + str(now.month) + str(now.day), "delimitedtext")
+			uri = "file:///C:/FHR_data/{}_{}_{}_{}.csv?crs=EPSG:4326&delimiter={}&xField={}&yField={}".format(name[n], now.year, now.month, now.day, "|", "Longitude", "Latitude")
+			layer_csv = QgsVectorLayer(uri, name[n] + "_" + str(now.year) + "_" + str(now.month) + "_" + str(now.day), "delimitedtext")
 			if not layer_csv.isValid():
 				print("Layer failed to load!")
 
