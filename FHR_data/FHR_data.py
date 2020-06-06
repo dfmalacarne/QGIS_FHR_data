@@ -335,7 +335,7 @@ class GeodataAPICollection:
 		name = []
 		pos = 0
 		count = 0
-		for x in range(300):
+		for x in range(400):
 			if self.dlg.tableWidget.item(count, 0).checkState() == QtCore.Qt.Checked:
 				code.append(self.dlg.tableWidget.item(count, 2).text())
 				name.append(self.dlg.tableWidget.item(count, 1).text())
@@ -501,6 +501,22 @@ class GeodataAPICollection:
 
 			QgsProject.instance().addMapLayer(layer_csv)
 
+	def selectall(self):
+		for x in range(400):
+			if self.dlg.tableWidget.item(x, 1) is not None:
+				chkBoxItem = QtWidgets.QTableWidgetItem()
+				chkBoxItem.setFlags(QtCore.Qt.ItemIsUserCheckable | QtCore.Qt.ItemIsEnabled)
+				chkBoxItem.setCheckState(QtCore.Qt.Checked)
+				self.dlg.tableWidget.setItem(x,0,chkBoxItem)
+
+
+	def unselectall(self):
+		for x in range(400):
+			chkBoxItem = QtWidgets.QTableWidgetItem()
+			chkBoxItem.setFlags(QtCore.Qt.ItemIsUserCheckable | QtCore.Qt.ItemIsEnabled)
+			chkBoxItem.setCheckState(QtCore.Qt.Unchecked)
+			self.dlg.tableWidget.setItem(x,0,chkBoxItem)
+
 
 	def run(self):
 		"""Run method that performs all the real work"""
@@ -513,6 +529,8 @@ class GeodataAPICollection:
 			self.dlg.pushButton_2.clicked.connect(self.saveinfo)
 			self.dlg.pushButton.clicked.connect(self.download)
 			self.dlg.pushButton_3.clicked.connect(self.getinfo)
+			self.dlg.pushButton_4.clicked.connect(self.selectall)
+			self.dlg.pushButton_5.clicked.connect(self.unselectall)
 
 		# show the dialog
 		self.dlg.show()
