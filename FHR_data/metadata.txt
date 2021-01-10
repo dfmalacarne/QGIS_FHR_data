@@ -5,15 +5,15 @@
 [general]
 name=FHR Data
 qgisMinimumVersion=3.0
-description=This plugin allow you to access a series of geodata published via APIs
+description=This plugin allow you to access the UK food hygiene rating data by parsing the API
 version=0.1
 author=Diego F Malacarne
 email=diego.malacarne@yahoo.it
 
-about=This plugin allow you to access a series of geodata published via APIs. Available resources: - (Food Standard Agency) UK food hygiene rating data API
+about=QGIS plugin which parse the UK food hygiene rating data API available at https://ratings.food.gov.uk/open-data/en-GB and allows to download the businesses locations with relative information as points in CSV format.
 
-tracker=http://bugs
-repository=http://repo
+tracker=https://github.com/dfmalacarne/QGIS_FHR_data/issues
+repository=https://github.com/dfmalacarne/QGIS_FHR_data
 # End of mandatory metadata
 
 # Recommended items:
